@@ -11,9 +11,9 @@
     "use strict";
 
     var json = '{'
-        + '"status": "false",'
+        + '"status": false,'
         + '"errors":"\u041a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0447\u0430 \u043d\u0435 \u0456\u0441\u043d\u0443\u0454",'
-        + '"result": "null",'
+        + '"result": null,'
         + '"number": 545'
         + '}';
 
