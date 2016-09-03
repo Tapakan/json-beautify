@@ -91,17 +91,17 @@
             .replace(/>/g, '&gt;');
 
         // Replace for true, false.
-        json = json.replace(/(("?)(true|false)("?))/g, function (match) {
+        json = json.replace(/("?(true|false)"?)/g, function (match) {
             return "<" + params['tag'] + " class=\"" + params['bool_class'] + "\">" + match + "</" + params['tag'] + ">";
         });
 
         // Replace for null.
-        json = json.replace(/(("?)(null)("?))/g, function (match) {
+        json = json.replace(/("?(null)"?)/g, function (match) {
             return "<" + params['tag'] + " class=\"" + params['null_class'] + "\">" + match + "</" + params['tag'] + ">";
         });
 
         // Replace for number.
-        json = json.replace(/\-?\d+(\.\,\d{0,})?/g, function (match) {
+        json = json.replace(/"?\s*\-?\d+(\.\,\d{0,})?\s*"?/g, function (match) {
             return "<" + params['tag'] + " class=\"" + params['number_class'] + "\">" + match + "</" + params['tag'] + ">";
         });
 
