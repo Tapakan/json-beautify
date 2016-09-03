@@ -101,7 +101,7 @@
         });
 
         // Replace for number.
-        json = json.replace(/(("?)(\d)("?))/g, function (match) {
+        json = json.replace(/\-?\d+(\.\,\d{0,})?/g, function (match) {
             return "<" + params['tag'] + " class=\"" + params['number_class'] + "\">" + match + "</" + params['tag'] + ">";
         });
 
