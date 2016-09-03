@@ -1,0 +1,24 @@
+{
+  "name"           : "json-beautify",
+  "private"        : true,
+  "version"        : "0.0.1",
+  "description"    : "Beautify your json",
+  "repository"     : "https://github.com/Tapakan/json-beautify.git",
+  "license"        : "MIT",
+  "devDependencies": {
+    "jasmine-core"             : "^2.4.1",
+    "jscs"                     : "^3.0.3",
+    "jshint"                   : "^2.9.2",
+    "karma"                    : "^0.13.22",
+    "karma-cli"                : "^0.1.2",
+    "karma-coverage"           : "^0.5.5",
+    "karma-coveralls"          : "^1.1.2",
+    "karma-jasmine"            : "^0.3.8",
+    "karma-phantomjs-launcher" : "^1.0.0",
+    "phantomjs-prebuilt"       : "^2.1.7"
+  },
+  "scripts"        : {
+    "test:single": "karma start karma.conf.js --single-run --browsers PhantomJS",
+    "test:watch" : "karma start karma.conf.js --browsers PhantomJS"
+  }
+}
