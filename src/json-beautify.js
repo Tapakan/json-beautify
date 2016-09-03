@@ -14,6 +14,7 @@
         this.params = {
             'spaces'      : 4,
             'tag'         : 'span',
+            'key_class'   : 'key',
             'bool_class'  : 'bool',
             'null_class'  : 'null',
             'number_class': 'number',
@@ -90,22 +91,25 @@
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;');
 
-        // Replace for true, false.
-        json = json.replace(/("?(true|false)"?)/g, function (match) {
-            return "<" + params['tag'] + " class=\"" + params['bool_class'] + "\">" + match + "</" + params['tag'] + ">";
-        });
+        return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
 
-        // Replace for null.
-        json = json.replace(/("?(null)"?)/g, function (match) {
-            return "<" + params['tag'] + " class=\"" + params['null_class'] + "\">" + match + "</" + params['tag'] + ">";
-        });
+            var cls = params['number_class'];
+            if (/^"/.test(match)) {
+                if (/:$/.test(match)) {
+                    cls = params['key_class'];
+                } else {
+                    cls = params['string_class'];
+                }
+            }
+            else if (/true|false/.test(match)) {
+                cls = params['bool_class'];
+            }
+            else if (/null/.test(match)) {
+                cls = params['null_class'];
+            }
 
-        // Replace for number.
-        json = json.replace(/"?\s*\-?\d+(\.\,\d{0,})?\s*"?/g, function (match) {
-            return "<" + params['tag'] + " class=\"" + params['number_class'] + "\">" + match + "</" + params['tag'] + ">";
+            return "<" + params['tag'] + " class=\"" + cls + "\">" + match + "</" + params['tag'] + ">";
         });
-
-        return json;
     }
 
     window.JSONBeautify = new JSONBeautify();
